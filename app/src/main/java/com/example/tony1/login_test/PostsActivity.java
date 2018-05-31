@@ -22,7 +22,6 @@ public class PostsActivity extends AppCompatActivity {
     private TextView tvName;
     private TextView tvAuthor;
     private TextView tvArticleText;
-    //test push
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
