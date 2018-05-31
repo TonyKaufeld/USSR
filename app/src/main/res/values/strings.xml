@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">USSR</string>
+    <string name="title_activity_posts">posts</string>
 </resources>
