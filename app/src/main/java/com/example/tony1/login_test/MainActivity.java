@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 validate(Name.getText().toString(), Password.getText().toString());
             }
         });
+        //test
 
         UserSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
