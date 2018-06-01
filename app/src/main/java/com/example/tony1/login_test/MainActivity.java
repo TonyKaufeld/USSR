@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Login;
     private int counter;
     private TextView UserSignUp;
-    private TextView info;
+    private TextView info, NoUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Name = (EditText)findViewById(R.id.firstName);
         Password = (EditText)findViewById(R.id.password);
         Login = (Button)findViewById(R.id.loginButton);
+        NoUser = (TextView)findViewById(R.id.tvNoUser);
         info = (TextView)findViewById(R.id.info);
         UserSignUp = (TextView) findViewById(R.id.tvUserSignUp);
 
@@ -47,6 +48,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        NoUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PostsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 

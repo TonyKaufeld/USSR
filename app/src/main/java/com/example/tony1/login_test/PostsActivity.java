@@ -36,7 +36,7 @@ public class PostsActivity extends AppCompatActivity {
         tvAuthor = findViewById(R.id.tvAuthor);
         tvArticleText = findViewById(R.id.tvArticleText);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -46,7 +46,9 @@ public class PostsActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
+
         });
+        */
     }
 
     @Override
