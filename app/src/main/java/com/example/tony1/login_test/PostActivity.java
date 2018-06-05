@@ -1,21 +1,17 @@
 package com.example.tony1.login_test;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PostsActivity extends AppCompatActivity {
+public class PostActivity extends AppCompatActivity {
 
-    private static final String TAG = PostsActivity.class.getName();
+    private static final String TAG = PostActivity.class.getName();
 
     private APIInterface apiInterface;
 
@@ -26,7 +22,7 @@ public class PostsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts);
+        setContentView(R.layout.activity_post);
 
         // Initialize the API Client with the corresponding API methods/functions
         apiInterface = APIClient.getClient().create(APIInterface.class);
