@@ -35,10 +35,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity
-            android:name=".PostsActivity"
-            android:label="@string/title_activity_posts"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".PostsActivity">
+
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
