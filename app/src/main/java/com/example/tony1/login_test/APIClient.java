@@ -19,7 +19,7 @@ public class APIClient {
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://" + HOST + "/android-test-api/")
+                .baseUrl("http://" + HOST + "/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

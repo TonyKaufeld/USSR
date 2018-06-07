@@ -1,26 +1,31 @@
 package com.example.tony1.login_test;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PostActivity extends AppCompatActivity {
-
+public class PostActivity extends AppCompatActivity
+{
     private static final String TAG = PostActivity.class.getName();
 
     private APIInterface apiInterface;
 
     private TextView tvName;
-    private TextView tvAuthor;
-    private TextView tvArticleText;
+    private TextView tvTitle;
+    private TextView tvImg;
+    private Button btnPost;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
@@ -29,22 +34,17 @@ public class PostActivity extends AppCompatActivity {
 
         // Get reference to the views and keep these in mind
         tvName = findViewById(R.id.tvName);
-        tvAuthor = findViewById(R.id.tvAuthor);
-        tvArticleText = findViewById(R.id.tvArticleText);
+        tvTitle = findViewById(R.id.tvTitle);
+        tvImg = findViewById(R.id.tvImg);
+        btnPost = findViewById(R.id.btnPost);
 
-        /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(PostActivity.this, AddPost.class);
+                startActivity(intent);
             }
-
         });
-        */
     }
 
     @Override
@@ -79,8 +79,8 @@ public class PostActivity extends AppCompatActivity {
      */
     private void emptyArticleTextViews(){
         tvName.setText("");
-        tvAuthor.setText("");
-        tvArticleText.setText("");
+        tvTitle.setText("");
+        tvImg.setText("");
     }
     /**
      * Show article data
@@ -90,8 +90,8 @@ public class PostActivity extends AppCompatActivity {
     private void showArticleInTextViews(Article articleFromAPI) {
 
         tvName.setText(articleFromAPI.getName());
-        tvAuthor.setText(articleFromAPI.getAuthor());
-        tvArticleText.setText(articleFromAPI.getText());
+        tvTitle.setText(articleFromAPI.getTitle());
+        tvImg.setText(articleFromAPI.getImg());
 
     }
 

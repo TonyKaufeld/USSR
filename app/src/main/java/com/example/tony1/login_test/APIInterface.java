@@ -11,7 +11,7 @@ public interface APIInterface {
     @GET("articles")
     Call<List<Article>> listArticles();
 
-    @GET("article/{id}")
+    @GET("articles/{id}")
     Call<Article> getArticle(@Path("id") long id);
 
 }

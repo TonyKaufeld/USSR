@@ -11,12 +11,12 @@ public class Article {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("author")
+    @SerializedName("title")
     @Expose
-    private String author;
-    @SerializedName("text")
+    private String title;
+    @SerializedName("img")
     @Expose
-    private String text;
+    private String img;
 
     public Integer getId() {
         return id;
@@ -34,19 +34,19 @@ public class Article {
         this.name = name;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setTitle(String author) {
+        this.title = author;
     }
 
-    public String getText() {
-        return text;
+    public String getImg() {
+        return img;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setImg(String text) {
+        this.img = text;
     }
 }
