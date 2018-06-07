@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    cardview:cardBackgroundColor="@color/cardview_dark_background"
+    cardview:cardCornerRadius="9dp"
+    cardview:cardElevation="4dp"
+    cardview:cardUseCompatPadding="true">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="4dp" >
+
+        <TextView
+            android:id="@+id/tv_post_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="{POST TITLE}"
+            android:textAllCaps="true"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/tv_post_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            cardview:srcCompat="@drawable/ic_launcher_background" />
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp" >
+
+            <Button
+                android:id="@+id/btn_post_upvote"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/btn_post_comment"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/btn_post_downvote"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Button" />
+
+        </TableRow>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.v7.widget.CardView>
