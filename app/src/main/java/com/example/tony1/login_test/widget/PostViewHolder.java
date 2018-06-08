@@ -8,12 +8,12 @@ import android.widget.TextView;
 import com.example.tony1.login_test.PostActivity;
 import com.example.tony1.login_test.R;
 
-public class ArticleViewHolder extends RecyclerView.ViewHolder {
+public class PostViewHolder extends RecyclerView.ViewHolder {
 
     public TextView textViewName;
     public long postId;
 
-    public ArticleViewHolder(View itemView) {
+    public PostViewHolder(View itemView) {
         super(itemView);
 
         textViewName = itemView.findViewById(R.id.tv_post_name);
@@ -23,7 +23,7 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
 
                 Intent intent = new Intent(v.getContext(), PostActivity.class);
-                intent.putExtra("articleId", articleId);
+                intent.putExtra("postId", postId);
                 v.getContext().startActivity(intent);
 
             }

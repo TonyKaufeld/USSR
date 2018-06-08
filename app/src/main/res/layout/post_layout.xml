@@ -44,21 +44,21 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Upvote" />
 
             <Button
                 android:id="@+id/btn_post_comment"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Comment" />
 
             <Button
                 android:id="@+id/btn_post_downvote"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="Downvote" />
 
         </TableRow>
 
