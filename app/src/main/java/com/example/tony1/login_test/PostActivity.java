@@ -1,12 +1,23 @@
 package com.example.tony1.login_test;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.tony1.login_test.widget.PostRecycleViewAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,12 +27,10 @@ public class PostActivity extends AppCompatActivity
 {
     private static final String TAG = PostActivity.class.getName();
 
+    private CoordinatorLayout coordinatorLayout;
+    private ProgressBar progress;
     private APIInterface apiInterface;
-
-    private TextView tvName;
-    private TextView tvTitle;
-    private TextView tvImg;
-    private Button btnPost;
+    private PostRecycleViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,69 +38,57 @@ public class PostActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-        // Initialize the API Client with the corresponding API methods/functions
+        Context context = this;
+
+        progress = findViewById(R.id.progress_bar);
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        // Get reference to the views and keep these in mind
-        tvName = findViewById(R.id.tvName);
-        tvTitle = findViewById(R.id.tvTitle);
-        tvImg = findViewById(R.id.tvImg);
-        btnPost = findViewById(R.id.btnPost);
+        // Create a new ToDoRecycleView Adapter, which needs context and a database cursor to fetch data
+        adapter = new PostRecycleViewAdapter(context);
 
-        btnPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PostActivity.this, AddPost.class);
-                startActivity(intent);
-            }
-        });
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_articles);
+
+        // Attach a layout manager and the data adapter
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        emptyArticleTextViews();
+        progress.setVisibility(View.VISIBLE);
 
-        // Get one article from the API though the internet.
-        Call<Article> call = apiInterface.getArticle(4);
-        call.enqueue(new Callback<Article>() {
+        /**
+         GET List Resources
+         **/
+        Call<List<Article>> call = apiInterface.listArticles();
+        call.enqueue(new Callback<List<Article>>() {
             @Override
-            public void onResponse(Call<Article> call, Response<Article> response) {
-                Article article = response.body();
-                if (null != article) {
-                    showArticleInTextViews(article);
-                } else {
-                    Log.e(TAG, "Got no article, because:" + response.raw());
-                }
+            public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {
+                Log.d(TAG, String.valueOf(response.code()));
+
+                progress.setVisibility(View.GONE);
+
+                List<Article> articles = response.body();
+
+                // Notify adapter which will refresh the data in the recycler view
+                adapter.notifyWithNewData(articles);
+
             }
 
             @Override
-            public void onFailure(Call<Article> call, Throwable t) {
-                Log.e(TAG, t.getMessage());
+            public void onFailure(Call<List<Article>> call, Throwable t) {
+                call.cancel();
+                adapter.notifyWithNewData(new ArrayList<Article>());
+
+                progress.setVisibility(View.GONE);
+
             }
+
+
         });
 
-    }
-
-    /**
-     * To ensure text views are emptied before we fresh texts in
-     */
-    private void emptyArticleTextViews(){
-        tvName.setText("");
-        tvTitle.setText("");
-        tvImg.setText("");
-    }
-    /**
-     * Show article data
-     *
-     * @param articleFromAPI
-     */
-    private void showArticleInTextViews(Article articleFromAPI) {
-
-        tvName.setText(articleFromAPI.getName());
-        tvTitle.setText(articleFromAPI.getTitle());
-        tvImg.setText(articleFromAPI.getImg());
 
     }
 
